@@ -1,0 +1,200 @@
+<definitions targetNamespace="http://service/"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://service/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             name="service.FishService">
+    <types>
+        <xs:schema version="1.0" targetNamespace="http://service/">
+            <xs:element name="FishNotFoundEx" type="tns:FishNotFoundEx"/>
+            <xs:element name="addFish" type="tns:addFish"/>
+            <xs:element name="addFishResponse" type="tns:addFishResponse"/>
+            <xs:element name="countFish" type="tns:countFish"/>
+            <xs:element name="countFishResponse" type="tns:countFishResponse"/>
+            <xs:element name="deleteFish" type="tns:deleteFish"/>
+            <xs:element name="deleteFishResponse" type="tns:deleteFishResponse"/>
+            <xs:element name="getAllFish" type="tns:getAllFish"/>
+            <xs:element name="getAllFishResponse" type="tns:getAllFishResponse"/>
+            <xs:element name="getFish" type="tns:getFish"/>
+            <xs:element name="getFishResponse" type="tns:getFishResponse"/>
+            <xs:complexType name="countFish">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="countFishResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getAllFish">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="getAllFishResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="tns:fish" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="fish">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:int"/>
+                    <xs:element name="name" type="xs:string" minOccurs="0"/>
+                    <xs:element name="saltwater" type="xs:boolean"/>
+                    <xs:element name="weight" type="xs:float"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="addFish">
+                <xs:sequence>
+                    <xs:element name="arg0" type="xs:int"/>
+                    <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+                    <xs:element name="arg2" type="xs:float"/>
+                    <xs:element name="arg3" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="addFishResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="tns:fish" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="deleteFish">
+                <xs:sequence>
+                    <xs:element name="arg0" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="deleteFishResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="FishNotFoundEx">
+                <xs:sequence>
+                    <xs:element name="message" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getFish">
+                <xs:sequence>
+                    <xs:element name="arg0" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getFishResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="tns:fish" minOccurs="0"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </types>
+    <message name="getFish">
+        <part name="parameters" element="tns:getFish"/>
+    </message>
+    <message name="getFishResponse">
+        <part name="parameters" element="tns:getFishResponse"/>
+    </message>
+    <message name="FishNotFoundEx">
+        <part name="fault" element="tns:FishNotFoundEx"/>
+    </message>
+    <message name="deleteFish">
+        <part name="parameters" element="tns:deleteFish"/>
+    </message>
+    <message name="deleteFishResponse">
+        <part name="parameters" element="tns:deleteFishResponse"/>
+    </message>
+    <message name="addFish">
+        <part name="parameters" element="tns:addFish"/>
+    </message>
+    <message name="addFishResponse">
+        <part name="parameters" element="tns:addFishResponse"/>
+    </message>
+    <message name="getAllFish">
+        <part name="parameters" element="tns:getAllFish"/>
+    </message>
+    <message name="getAllFishResponse">
+        <part name="parameters" element="tns:getAllFishResponse"/>
+    </message>
+    <message name="countFish">
+        <part name="parameters" element="tns:countFish"/>
+    </message>
+    <message name="countFishResponse">
+        <part name="parameters" element="tns:countFishResponse"/>
+    </message>
+    <portType name="FishService">
+        <operation name="getFish">
+            <input message="tns:getFish"/>
+            <output message="tns:getFishResponse"/>
+            <fault message="tns:FishNotFoundEx" name="FishNotFoundEx"/>
+        </operation>
+        <operation name="deleteFish">
+            <input message="tns:deleteFish"/>
+            <output message="tns:deleteFishResponse"/>
+            <fault message="tns:FishNotFoundEx" name="FishNotFoundEx" />
+        </operation>
+        <operation name="addFish">
+            <input message="tns:addFish"/>
+            <output message="tns:addFishResponse"/>
+        </operation>
+        <operation name="getAllFish">
+            <input message="tns:getAllFish"/>
+            <output message="tns:getAllFishResponse"/>
+        </operation>
+        <operation name="countFish">
+            <input message="tns:countFish"/>
+            <output message="tns:countFishResponse"/>
+        </operation>
+    </portType>
+    <binding name="FishServiceImplPortBinding" type="tns:FishService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="getFish">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FishNotFoundEx">
+                <soap:fault name="FishNotFoundEx" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="deleteFish">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="FishNotFoundEx">
+                <soap:fault name="FishNotFoundEx" use="literal"/>
+            </fault>
+        </operation>
+        <operation name="addFish">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getAllFish">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="countFish">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="service.FishService">
+        <port name="FishServiceImplPort" binding="tns:FishServiceImplPortBinding">
+            <soap:address location="http://localhost:8081/fishservice"/>
+        </port>
+    </service>
+</definitions>
