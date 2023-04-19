@@ -6,6 +6,10 @@ public class Fish {
     private float weight;
     private boolean saltwater;
 
+    public Fish(){
+
+    }
+
     public Fish(int id, String name, float weight, boolean saltwater) {
         this.id = id;
         this.name = name;

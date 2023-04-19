@@ -1,9 +1,8 @@
-<definitions targetNamespace="http://service/"
+<definitions targetNamespace="http://service/" name="service.FishService"
              xmlns:xs="http://www.w3.org/2001/XMLSchema"
              xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
              xmlns:tns="http://service/"
-             xmlns="http://schemas.xmlsoap.org/wsdl/"
-             name="service.FishService">
+             xmlns="http://schemas.xmlsoap.org/wsdl/">
     <types>
         <xs:schema version="1.0" targetNamespace="http://service/">
             <xs:element name="FishNotFoundEx" type="tns:FishNotFoundEx"/>
@@ -116,26 +115,26 @@
     </message>
     <portType name="FishService">
         <operation name="getFish">
-            <input message="tns:getFish"/>
-            <output message="tns:getFishResponse"/>
-            <fault message="tns:FishNotFoundEx" name="FishNotFoundEx"/>
+            <input  message="tns:getFish"/>
+            <output  message="tns:getFishResponse"/>
+            <fault message="tns:FishNotFoundEx" name="FishNotFoundEx" />
         </operation>
         <operation name="deleteFish">
-            <input message="tns:deleteFish"/>
-            <output message="tns:deleteFishResponse"/>
+            <input  message="tns:deleteFish"/>
+            <output  message="tns:deleteFishResponse"/>
             <fault message="tns:FishNotFoundEx" name="FishNotFoundEx" />
         </operation>
         <operation name="addFish">
-            <input message="tns:addFish"/>
-            <output message="tns:addFishResponse"/>
+            <input  message="tns:addFish"/>
+            <output  message="tns:addFishResponse"/>
         </operation>
         <operation name="getAllFish">
-            <input message="tns:getAllFish"/>
+            <input  message="tns:getAllFish"/>
             <output message="tns:getAllFishResponse"/>
         </operation>
         <operation name="countFish">
-            <input message="tns:countFish"/>
-            <output message="tns:countFishResponse"/>
+            <input  message="tns:countFish"/>
+            <output  message="tns:countFishResponse"/>
         </operation>
     </portType>
     <binding name="FishServiceImplPortBinding" type="tns:FishService">

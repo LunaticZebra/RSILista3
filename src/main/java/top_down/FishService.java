@@ -17,7 +17,7 @@ import jakarta.xml.ws.ResponseWrapper;
  * Generated source version: 3.0
  * 
  */
-@WebService(name = "FishService", targetNamespace = "http://service/")
+@WebService(name = "FishService", targetNamespace = "http://top_down/")
 @XmlSeeAlso({
     ObjectFactory.class
 })
